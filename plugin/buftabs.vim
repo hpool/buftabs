@@ -146,8 +146,8 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let w:buftabs_enabled = 0
-let w:original_statusline = matchstr(&statusline, "%=.*")
+let g:buftabs_enabled = 0
+let g:original_statusline = matchstr(&statusline, "%=.*")
 
 "
 " Don't bother when in diff mode
@@ -163,7 +163,7 @@ endif
 "
 
 function! Buftabs_enable()
-	let w:buftabs_enabled = 1
+	let g:buftabs_enabled = 1
 endfunction
 
 
@@ -197,7 +197,7 @@ function! Buftabs_show(deleted_buf)
 		let w:from = 0
 	endif
 
-	if ! exists("w:buftabs_enabled")
+	if ! exists("g:buftabs_enabled")
 		return
 	endif
 
@@ -313,7 +313,7 @@ function! Buftabs_show(deleted_buf)
 		" Only overwrite the statusline if buftabs#statusline() has not been
 		" used to specify a location
 		if match(&statusline, "%{buftabs#statusline()}") == -1
-			let &l:statusline = s:list . w:original_statusline
+			let &l:statusline = s:list . g:original_statusline
 		end
 	else
 		redraw
